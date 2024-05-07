@@ -3,4 +3,73 @@ class Main{
 + static void main(String[] args)
 }
 
+
+
+class Customer {
+    - List<Item> ejendele
+}
+
+class Company {
+    - int kapacitet
+}
+
+class TicketHandler {
+    - Ticket billetudstedelse
+    - Ticket afhentning
+}
+
+class Admin {
+    - Statistic ventetid
+}
+
+class CustomerService {
+}
+
+class Payment {
+}
+
+class Organizer {
+}
+
+class Location {
+    - String natklub
+}
+
+class ErrorHandler {
+}
+
+class FileIO {
+}
+
+class Item {
+}
+
+class Statistic {
+}
+
+class Ticket {
+}
+
+Customer "1" -- "*" Item : has >
+
+Company "1" -- "*" Customer : serves >
+Company "1" -- "*" TicketHandler : uses >
+Company "1" -- "1" Admin : manages >
+Company "1" -- "1" Organizer : coordinates >
+Company "1" -- "1" ErrorHandler : handles >
+Company "1" -- "1" FileIO : uses >
+
+Admin "1" -- "1" CustomerService : uses >
+Admin "1" -- "1" Payment : manages >
+
+TicketHandler "1" -- "1" Location : uses >
+
 @enduml
+"""
+
+# Gemmer det opdaterede indhold til en .puml fil
+updated_path = "/mnt/data/UpdatedGarderobeSystemKlassediagram.puml"
+with open(updated_path, "w") as file:
+    file.write(updated_klassediagram_content)
+
+updated_path
