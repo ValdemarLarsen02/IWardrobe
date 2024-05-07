@@ -6,20 +6,20 @@ class Main{
 
 
 class Customer {
-    - List<Item> ejendele
+    - List<Item> Valuables
 }
 
 class Company {
-    - int kapacitet
+    - int Capacity
 }
 
 class TicketHandler {
-    - Ticket billetudstedelse
-    - Ticket afhentning
+    - Ticket Generation
+    - Ticket Removal
 }
 
 class Admin {
-    - Statistic ventetid
+    - Statistic WaitTime
 }
 
 class CustomerService {
@@ -32,7 +32,7 @@ class Organizer {
 }
 
 class Location {
-    - String natklub
+    - String Venue
 }
 
 class ErrorHandler {
@@ -47,9 +47,7 @@ class Item {
 class Statistic {
 }
 
-class Ticket {
-}
-
+Main "1" -- "*" Company : uses >
 Customer "1" -- "*" Item : has >
 
 Company "1" -- "*" Customer : serves >
@@ -61,15 +59,8 @@ Company "1" -- "1" FileIO : uses >
 
 Admin "1" -- "1" CustomerService : uses >
 Admin "1" -- "1" Payment : manages >
+Admin "1" -- "1" Statistic : manages >
 
 TicketHandler "1" -- "1" Location : uses >
 
 @enduml
-"""
-
-# Gemmer det opdaterede indhold til en .puml fil
-updated_path = "/mnt/data/UpdatedGarderobeSystemKlassediagram.puml"
-with open(updated_path, "w") as file:
-    file.write(updated_klassediagram_content)
-
-updated_path
