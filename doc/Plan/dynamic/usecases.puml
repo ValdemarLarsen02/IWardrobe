@@ -3,19 +3,17 @@
 
   actor user
 
-  usecase "ThrowAndMove" as UC3
-  usecase "StartGame" as UC1
-  usecase "EndGame" as UC5
-  usecase "RegisterPlayers" as UC2
-  usecase "LandAndAct" as UC4
-  usecase "pawnOrTrade" as UC6
+  usecase "Customer" as UC1
+  usecase "TicketHandler" as UC2
+  usecase "Return" as UC3
+  usecase "Payment" as UC4
+
 
 user --> UC1
-UC1 --> UC2
-UC1 --> UC3
-UC3 --> UC6
-UC3 --> UC4
-UC4 --> UC3
-UC3 --> UC5
-UC1 --> UC5
+UC1 --> UC4
+UC4 --> UC2
+UC2 --> UC3
+
+
+
 @enduml
