@@ -1,4 +1,5 @@
 @startuml
+!pragma layout smetana
 class Main{
 + static void main(String[] args)
 }
@@ -6,16 +7,18 @@ class Main{
 
 
 class Customer {
+    + Account
     - List<Item> Valuables
 }
 
 class Company {
     - int Capacity
+
 }
 
 class TicketHandler {
-    - Ticket Generation
-    - Ticket Removal
+    + TicketGeneration(Customer);
+    + TicketRemoval(Customer):
 }
 
 class Admin {
@@ -23,12 +26,16 @@ class Admin {
 }
 
 class CustomerService {
+    assistCustomer();
 }
 
 class Payment {
+    -Pay(Customer, account)
 }
 
 class Organizer {
+    -boolean multipleWardrobes
+    +hasMulitpleWardrobes
 }
 
 class Location {
@@ -39,12 +46,19 @@ class ErrorHandler {
 }
 
 class FileIO {
+    +SaveData(path);
+    +RemoveData(path);
 }
 
 class Item {
+
+
 }
 
 class Statistic {
+    +customerAmount
+    +calculateWaitTime
+    +showStatistics
 }
 
 Main "1" -- "*" Company : uses >
