@@ -7,62 +7,59 @@ class Main{
 
 
 class Customer {
-    + Account
     - List<Item> Valuables
 }
 
 class Company {
     - int Capacity
+    - String name
 
 }
 
 class TicketHandler {
-    + TicketGeneration(Customer);
-    + TicketRemoval(Customer):
+    + ticketGeneration(Customer);
+    + ticketRemoval(Customer):
+    + pay(Customer)
 }
 
 class Admin {
-    - Statistic WaitTime
+    showAdminMenu(Company)
 }
 
 class CustomerService {
     assistCustomer();
 }
 
-class Payment {
-    -Pay(Customer, account)
-}
 
 class Organizer {
     -boolean multipleWardrobes
     +hasMulitpleWardrobes
+    organizeItems(Item)
 }
 
 class Location {
     - String Venue
+    - getLocation
 }
 
 class ErrorHandler {
+    + saveErrorLog(Error)
 }
 
 class FileIO {
-    +SaveData(path);
-    +RemoveData(path);
-}
-
-class Item {
-
-
+    +createCompany
+    +SaveData(path)
+    +RemoveData(path)
 }
 
 class Statistic {
     +customerAmount
     +calculateWaitTime
     +showStatistics
+    +saveStatistics
 }
 
 Main "1" -- "*" Company : uses >
-Customer "1" -- "*" Item : has >
 
 Company "1" -- "*" Customer : serves >
 Company "1" -- "*" TicketHandler : uses >
@@ -72,7 +69,6 @@ Company "1" -- "1" ErrorHandler : handles >
 Company "1" -- "1" FileIO : uses >
 
 Admin "1" -- "1" CustomerService : uses >
-Admin "1" -- "1" Payment : manages >
 Admin "1" -- "1" Statistic : manages >
 
 TicketHandler "1" -- "1" Location : uses >
