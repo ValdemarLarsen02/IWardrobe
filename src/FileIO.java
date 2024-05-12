@@ -3,41 +3,45 @@ package src;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class FileIO {
     private String path = "data/items.csv";
+    ErrorHandler er = new ErrorHandler();
+    Scanner scan = new Scanner(path);
 
-    public void saveData(List<Integer> valuables) {
+    public void saveCustomerData(Customer customer, ArrayList<Customer> customers) {
         try (FileWriter fw = new FileWriter(path)) {
-            for (Integer number : valuables) {
-                fw.write(number + "\n");
+            fw.write("ID" + ", " + "Name" + "," + "\n");
+            for (Customer c : customers) {
+                fw.write(c.getId() + ", " + c.getName() + "\n");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            er.errorMessage();
         }
     }
 
-    public void removeItem(int numberToRemove) {
+    public void getAllCustomerData(ArrayList<Customer> customers) {
         try {
-            List<Integer> valuables = new ArrayList<>();
-
-            try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    int number = Integer.parseInt(line.trim());
-                    if (number != numberToRemove) {
-                        valuables.add(number);
-                    }
+            Scanner scan = new Scanner(new File(path));
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                String[] data = line.split("\n");
+                for (String s : data) {
+                    System.out.println(s);
                 }
             }
-
-            try (FileWriter fw = new FileWriter(path)) {
-                for (Integer number : valuables) {
-                    fw.write(number + "\n");
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            scan.close();
+        } catch (FileNotFoundException e) {
+            er.errorMessage();
         }
+    }
+
+
+    //Metode der henter seneste customer
+    //Metode der opdatere "times visited", hvis customeren allerede er i csv filen
+    public void removeCustomerData(Customer customer) {
+
+
     }
 }
