@@ -14,7 +14,6 @@ public class Company {
     public Company(int capacity, String name) {
         this.capacity = capacity;
         this.name = name;
-     //   organizer.organizeWardrobes();
 
     }
 

@@ -3,9 +3,24 @@ package src;
 public class ErrorHandler {
 
 
-     public void errorMessage() {
-        System.out.println("Der skete en fejl under behandlingen af filen");
+     public void saveCustomerDataError() {
+        System.out.println("An error occurred while saving customer data to CustomerData.csv");
     }
 
-    //Send en type med, fx betalingsfejl
+    public void getAllCustomerDataError() {
+        System.out.println("An error occurred while getting customer data from AllTimeCustomerData.csv");
+    }
+
+    public void getCustomerDataError() {
+        System.out.println("An error occurred while getting current customer data");
+    }
+
+    public void timesVisistedError() {
+        System.out.println("An error occurred while updating a customers times visited count");
+    }
+
+    public void removeCustomerError() {
+        System.out.println("An error occurred while removing customers from customerData.csv");
+    }
+
 }

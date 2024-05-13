@@ -1,3 +1,2 @@
-ID, Name,
-200, Micke
-100, Bob
+ID, Name, Phone Number, Ticket Number
+1, Micke, 52232323, 2

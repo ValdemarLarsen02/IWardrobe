@@ -3,23 +3,43 @@ package src;
 import java.util.ArrayList;
 
 public class Customer {
-    private int id;
-    private String name;
+    FileIO io = new FileIO();
+    public String customerID;
+    public String firstName;
+    public String phoneNumber;
+    public int ticketNumber;
+    public String lastSeen;
+    public ArrayList<Customer> customers = new ArrayList<Customer>();
 
-    public Customer(String name, int id) {
-        this.name = name;
-        this.id = id;
+    public Customer(String customerID, String firstName, String phoneNumber, int ticketNumber) {
+        this.customerID = customerID;
+        this.firstName = firstName;
+        this.phoneNumber = phoneNumber;
+        this.ticketNumber = ticketNumber;
+        customers.add(this);
+        io.saveCustomerData(this, customers);
     }
 
-    public String getName() {
-        return name;
+    public String getCustomerID() {
+        return customerID;
+    }
+    public String getFirstName() {
+        return firstName;
     }
 
-    public int getId() {
-        return id;
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public int getTicketNumber() {
+        return ticketNumber;
+    }
+
+    public ArrayList<Customer> getCustomers() {
+        return customers;
     }
     @Override
     public String toString() {
-        return "ID: " + id + ", Name: " + name;
+        return "Customer ID: " + customerID + ", Name: " + firstName + ", Phone Number: " + phoneNumber + ", Ticket Number: " + ticketNumber;
     }
 }
