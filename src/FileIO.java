@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class FileIO {
     private String customerDataPath = "data/CustomerData.csv";
     private String allTimeCustomerData = "data/AllTimeCustomerData.csv";
+    private int timesVisited = 0;
     ErrorHandler er = new ErrorHandler();
-    Scanner scan = new Scanner(path);
 
     public void saveCustomerData(Customer customer, ArrayList<Customer> customers) {
         try (FileWriter fw = new FileWriter(customerDataPath)) {
@@ -37,26 +37,22 @@ public class FileIO {
         }
     }
 
-    public void getCurrentCustomerData(Customer customer) {
-        try {
-            FileReader fr = new FileReader(customerDataPath);
-
-
-
-        } catch (IOException e) {
-            er.errorMessage();
+    public void getCurrentCustomerData(ArrayList<Customer> customers) {
+        if(customers.size() <= 0){
+            System.out.println(customers.get(customers.size() - 1));
         }
     }
 
     public void timesVisited (Customer customer) {
-        if(allTimeCustomerData.contains(customer.getName() && customer.getId())){
-
+        if(allTimeCustomerData.contains(customer.getNumber()) {
+            try {
+                FileWriter fw = new FileWriter(allTimeCustomerData);
+                fw.write(timesVisited++);
+            } catch (IOException e) {
+                er.errorMessage();
+            }
         }
     }
-
-
-    //Metode der henter seneste customer
-    //Metode der opdatere "times visited", hvis customeren allerede er i csv filen
     public void removeCustomerData(Customer customer) {
 
 
