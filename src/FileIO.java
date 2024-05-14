@@ -101,4 +101,7 @@ public class FileIO {
             System.out.println("Failed to remove customer.");
         }
     }
+
+    //Generate Admin code
+    //Get Admin Code
 }
