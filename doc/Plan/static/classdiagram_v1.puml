@@ -1,45 +1,51 @@
-@startuml
 !pragma layout smetana
 class Main{
 + static void main(String[] args)
 }
 
-
-
 class Customer {
-    - List<Item> Valuables
+    - String customerID
+    - String firstName
+    - String phoneNumber
+    - int ticketNumber
+    + Customer(String, String, String, int)
+    + getCustomerID(): String
+    + getFirstName(): String
+    + getPhoneNumber(): String
+    + getTicketNumber(): int
 }
 
 class Company {
-    - int Capacity
+    - int capacity
     - String name
-
+    + Company(int, String)
+    + getName(): String
 }
 
 class TicketHandler {
-    + ticketGeneration(Customer);
-    + ticketRemoval(Customer):
+    + ticketGeneration(Customer)
+    + ticketRemoval(Customer)
     + pay(Customer)
 }
 
 class Admin {
-    showAdminMenu(Company)
+    + showAdminMenu(Company)
 }
 
 class CustomerService {
-    assistCustomer();
+    + assistCustomer()
 }
 
 
 class Organizer {
-    -boolean multipleWardrobes
-    +hasMulitpleWardrobes
-    organizeItems(Item)
+    - boolean multipleWardrobes
+    + hasMulitpleWardrobes()
+    + organizeItems(Item)
 }
 
 class Location {
-    - String Venue
-    - getLocation
+    - String venue
+    + getLocation(): String
 }
 
 class ErrorHandler {
@@ -47,16 +53,16 @@ class ErrorHandler {
 }
 
 class FileIO {
-    +createCompany
-    +SaveData(path)
-    +RemoveData(path)
+    + createCompany()
+    + saveData(String)
+    + removeData(String)
 }
 
 class Statistic {
-    +customerAmount
-    +calculateWaitTime
-    +showStatistics
-    +saveStatistics
+    + customerAmount()
+    + calculateWaitTime()
+    + showStatistics()
+    + saveStatistics()
 }
 
 Main "1" -- "*" Company : uses >

@@ -1,4 +1,5 @@
 package src;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +7,8 @@ import java.util.Scanner;
 public class FileIO {
     private String customerDataPath = "data/CustomerData.csv";
     private String allTimeCustomerData = "data/AllTimeCustomerData.csv";
-    ErrorHandler er = new ErrorHandler();
+    private String adminDataPath = "data/AdminData.csv";
+    private ErrorHandler er = new ErrorHandler();
 
     public void saveCustomerData(Customer customer, ArrayList<Customer> customers) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(customerDataPath));
@@ -44,10 +46,9 @@ public class FileIO {
         if (!customers.isEmpty()) {
             System.out.println(customers.get(customers.size() - 1));
         } else {
-                er.getCustomerDataError();
-            }
+            er.getCustomerDataError();
         }
-
+    }
 
     public void timesVisited(Customer customer) {
         try (BufferedReader br = new BufferedReader(new FileReader(allTimeCustomerData));
@@ -83,7 +84,7 @@ public class FileIO {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(", ");
-                if (data.length >= 3 && data[2].equals(customer)) {
+                if (data.length >= 3 && data[2].equals(customer.getPhoneNumber())) {
                     continue;
                 }
                 pw.println(line);
@@ -102,6 +103,29 @@ public class FileIO {
         }
     }
 
-    //Generate Admin code
-    //Get Admin Code
+    public void generateAdminCode(Company company) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(adminDataPath, true))) {
+            int adminCode = (int) (Math.random() * 10000);
+            pw.println(company.getName() + ": Admin Code: " + adminCode);
+        } catch (IOException e) {
+            er.getCustomerDataError();
+        }
+    }
+
+    public String adminLogin(int adminCode) {
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader(adminDataPath))) {
+            while ((line = br.readLine()) != null) {
+                String[] userData = line.split(": Admin Code: ");
+                if (userData.length == 2 && Integer.parseInt(userData[1].trim()) == adminCode) {
+                    String username = userData[0].trim();
+                    System.out.println("You are logged in as " + username);
+                    return username;
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            er.getCustomerDataError();
+        }
+        return null;
+    }
 }
