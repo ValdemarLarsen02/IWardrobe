@@ -38,7 +38,7 @@ public class FileIO {
             }
             scan.close();
         } catch (FileNotFoundException e) {
-            er.getCustomerDataError();
+            er.getAllCustomerDataError();
         }
     }
 
@@ -108,7 +108,7 @@ public class FileIO {
             int adminCode = (int) (Math.random() * 10000);
             pw.println(company.getName() + ": Admin Code: " + adminCode);
         } catch (IOException e) {
-            er.getCustomerDataError();
+            er.generateAdminCodeError();
         }
     }
 
@@ -124,7 +124,7 @@ public class FileIO {
                 }
             }
         } catch (IOException | NumberFormatException e) {
-            er.getCustomerDataError();
+            er.adminLogin();
         }
         return null;
     }

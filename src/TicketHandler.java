@@ -2,12 +2,6 @@ package src;
 
 public class TicketHandler {
 
-
-        /*Vi skal bruge noget Ticket Type eller noget i den stil. Jeg har i min organizer lavet en
-    boolean der hedder "Acessory" der tjekker om vi har at gøre med en jakke eller ej, og organisere
-    garderoben derefter.
-
-         */
     public static void ticketGeneration(Customer customer) {
         System.out.println("Creating ticket for user " + customer.phoneNumber);
 
