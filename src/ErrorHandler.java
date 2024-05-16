@@ -31,4 +31,12 @@ public class ErrorHandler {
          System.out.println("An error occurred while logging in as admin");
     }
 
+    public void saveTicketCountError(){
+         System.out.println("An error occurred while saving ticket count");
+    }
+
+    public void getTicketCountError(){
+         System.out.println("An error occurred while getting ticket count");
+    }
+
 }

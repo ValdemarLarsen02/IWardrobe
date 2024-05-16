@@ -8,6 +8,7 @@ public class FileIO {
     private String customerDataPath = "data/CustomerData.csv";
     private String allTimeCustomerData = "data/AllTimeCustomerData.csv";
     private String adminDataPath = "data/AdminData.csv";
+    private String statisticsDataPath = "data/Statistics.csv";
     private ErrorHandler er = new ErrorHandler();
 
     public void saveCustomerData(Customer customer, ArrayList<Customer> customers) {
@@ -127,5 +128,27 @@ public class FileIO {
             er.adminLogin();
         }
         return null;
+    }
+
+    public void saveTicketCount(int ticketCount) {
+        try (FileWriter fw = new FileWriter(statisticsDataPath)) {
+            fw.write(ticketCount + "\n");
+        } catch (IOException e) {
+        er.saveTicketCountError();
+        }
+    }
+
+    public int getTicketCount(String statisticsDataPath) {
+        try {
+            File file = new File(statisticsDataPath);
+            Scanner sc = new Scanner(file);
+            if (sc.hasNextLine()) {
+                return Integer.parseInt(sc.nextLine());
+            }
+            sc.close();
+        } catch(IOException e) {
+            er.getTicketCountError();
+        }
+        return 0;
     }
 }
